@@ -10,12 +10,11 @@ using System.Windows.Forms;
 
 namespace AccountingApp.Forms
 {
-    public partial class TableComputers : UserControl
+    public partial class TableControl : UserControl
     {
-        public TableComputers()
+        public TableControl()
         {
             InitializeComponent();
-            this.Dock = DockStyle.Fill;
         }
     }
 }

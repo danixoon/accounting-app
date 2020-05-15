@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,36 +50,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\App.cs" />
+    <Compile Include="App\AppConfig.cs" />
     <Compile Include="App\AppControl.cs" />
+    <Compile Include="Schema\TableSchema.cs" />
     <Compile Include="Forms\AppForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AppForm.Designer.cs">
       <DependentUpon>AppForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TableComputers.cs">
+    <Compile Include="Forms\TableControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\TableComputers.Designer.cs">
-      <DependentUpon>TableComputers.cs</DependentUpon>
+    <Compile Include="Forms\TableControl.Designer.cs">
+      <DependentUpon>TableControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TablePrinters.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\TablePrinters.Designer.cs">
-      <DependentUpon>TablePrinters.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Interfaces\ISingleton.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Singleton.cs" />
     <EmbeddedResource Include="Forms\AppForm.resx">
       <DependentUpon>AppForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TableComputers.resx">
-      <DependentUpon>TableComputers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TablePrinters.resx">
-      <DependentUpon>TablePrinters.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -86,7 +79,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="data.Designer.json" />
+    <None Include="Schema\schema.json" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

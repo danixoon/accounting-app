@@ -1,74 +1,53 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace AccountingApp
 {
-
-    public struct AppConfig
+    public class App : Singleton<App>
     {
-        public Control container;
-        public AppControl[] controls;
 
-        public AppConfig(Control container, params AppControl[] controlsData)
-        {
-            this.controls = controlsData;
-            this.container = container;
-        }
-    }
+        public AppConfig config { get; private set; }
 
-    public class App : ISingleton<AppConfig>
-    {
-        public const string TABLE_COMPUTERS = "computers";
-        public const string TABLE_PRINTERS = "printers";
-
-        public static App instance { get; private set; }
-
-        public Control container { get; private set; }
         public Dictionary<string, AppControl> controlMap { get; private set; } = new Dictionary<string, AppControl>();
 
         public List<string> controlHistory { get; private set; } = new List<string>();
         public UserControl activeControl;
 
-
-        public static string LocalizeName(string key)
+        public App(AppConfig config)
         {
-            switch (key)
-            {
-                case TABLE_COMPUTERS:
-                    return "Компьютеры";
-                case TABLE_PRINTERS:
-                    return "Принтеры";
-                default:
-                    throw new Exception("Key not exists");
-            }
+            this.config = config;
+
+            foreach (var control in config.controls)
+                controlMap.Add(control.tableId, control);
         }
 
-        public void SetControl(string name)
+        public void SetControl(string tableId)
         {
-            if (!controlMap.TryGetValue(name, out AppControl targetControl)) throw new KeyNotFoundException("Invalid control name");
+            if (!controlMap.TryGetValue(tableId, out AppControl targetControl))
+                throw new KeyNotFoundException("Invalid control id");
+
 
             activeControl = targetControl.control;
 
-            container.Controls.Clear();
-            container.Controls.Add(activeControl);
+            config.container.Controls.Clear();
+            config.container.Controls.Add(activeControl);
         }
 
-        public bool isInitialized { get; private set; } = false;
-        public void Initialize(AppConfig config)
+        /// <summary>
+        /// Загружает схему данных таблиц приложения
+        /// </summary>
+        /// <returns> Объект схемы данных приложения </returns>
+        public static AppSchema LoadSchema()
         {
-            container = config.container;
+            var data = Encoding.UTF8.GetString(Properties.Resources.schema);
+            var schema = JsonConvert.DeserializeObject<AppSchema>(data);
 
-            isInitialized = true;
-            instance = this;
-
-            foreach (var control in config.controls)
-                controlMap.Add(control.name, control);
-
+            return schema;
         }
     }
 }
-

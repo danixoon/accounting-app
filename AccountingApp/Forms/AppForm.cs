@@ -14,22 +14,21 @@ namespace AccountingApp
     public partial class AppForm : Form
     {
         private App app;
-        private AppConfig config;
 
-        public void SetTable(string name)
+        public void SetTable(string tableId)
         {
-            tableSwitchGroup.Text = "Таблица - " + App.LocalizeName(name);
-            app.SetControl(name);
+            tableSwitchGroup.Text = "Таблица - " + app.config.ResolveTableName(tableId);
+            app.SetControl(tableId);
         }
 
         private void GenerateTableSwitch()
         {
             tableSwitch.Controls.Clear();
-            tableSwitch.ColumnCount = config.controls.Length;
-            foreach(var control in config.controls)
+            tableSwitch.ColumnCount = app.config.controls.Length;
+            foreach (var control in app.config.controls)
             {
-                var button = new Button() { Text = App.LocalizeName(control.name), Dock = DockStyle.Fill };
-                button.Click += (o, e) => SetTable(control.name);
+                var button = new Button() { Text = app.config.ResolveTableName(control.tableId), Dock = DockStyle.Fill };
+                button.Click += (o, e) => SetTable(control.tableId);
                 tableSwitch.Controls.Add(button);
             }
         }
@@ -38,17 +37,15 @@ namespace AccountingApp
         {
             InitializeComponent();
 
-            config = new AppConfig(container,
-               new AppTableControl(App.TABLE_COMPUTERS, new TableComputers(), new AppTableControl.DataColumn("id", "Ид.")),
-               new AppTableControl(App.TABLE_PRINTERS, new TablePrinters(), new AppTableControl.DataColumn("id", "Ид."))
-            );
+            var schema = App.LoadSchema();
+            var config = new AppConfig(container, schema);
+
+            app = new App(config);
+            app.Initialize();
 
             GenerateTableSwitch();
 
-            app = new App();
-            app.Initialize(config);
-
-            SetTable(App.TABLE_COMPUTERS);
+            SetTable(config.controls[0].tableId);
         }
     }
 }

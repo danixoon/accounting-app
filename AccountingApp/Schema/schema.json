@@ -1,0 +1,25 @@
+{
+  "columns": {
+    "id": "Ид.",
+    "ip_address": "IP-адрес",
+    "mac_address": "MAC-адрес",
+    "name": "Имя"
+  },
+  "tables": {
+    "computer": {
+      "name": "Компьютеры",
+      "columns": {
+        "name": null,
+        "ip_address": null,
+        "mac_address": null
+      }
+    },
+    "printer": {
+      "name": "Принтеры",
+      "columns": {
+        "name": null,
+        "ip_address": null
+      }
+    }
+  }
+}

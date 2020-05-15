@@ -10,38 +10,24 @@ namespace AccountingApp
 
     public class AppControl
     {
-        public string name;
+        /// <summary>
+        /// Идентификатор таблицы (соответствует имени в бд)
+        /// </summary>
+        public string tableId;
+        /// <summary>
+        /// Ссылка на контрол
+        /// </summary>
         public UserControl control;
+        /// <summary>
+        /// Идентификаторы столбцов
+        /// </summary>
+        public string[] columnIds;
 
-        public AppControl(string name, UserControl control)
+        public AppControl(string tableId, string[] columnIds, UserControl control)
         {
-            this.name = name;
+            this.tableId = tableId;
             this.control = control;
-        }
-    }
-
-    public class AppTableControl : AppControl
-    {
-
-        public struct DataColumn
-        {
-            public string headerId;
-            public string headerName;
-
-            public DataColumn(string headerId, string headerName)
-            {
-                this.headerId = headerId;
-                this.headerName = headerName;
-            }
-        }
-
-        public DataColumn[] columns;
-
-        public AppTableControl(string name, UserControl control, params DataColumn[] columns) : base(name, control)
-        {
-            this.name = name;
-            this.control = control;
-            this.columns = columns;
+            this.columnIds = columnIds;
         }
     }
 }
