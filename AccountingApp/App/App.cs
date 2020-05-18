@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data;
+using System.Globalization;
+using AccountingApp.Forms;
 using Newtonsoft.Json;
 
 namespace AccountingApp
@@ -12,6 +16,10 @@ namespace AccountingApp
     {
 
         public AppConfig config { get; private set; }
+        /// <summary>
+        /// Контролы, переключаемые приложением
+        /// </summary>
+        public AppControl[] controls;
 
         public Dictionary<string, AppControl> controlMap { get; private set; } = new Dictionary<string, AppControl>();
 
@@ -20,9 +28,22 @@ namespace AccountingApp
 
         public App(AppConfig config)
         {
+            Initialize();
+
             this.config = config;
 
-            foreach (var control in config.controls)
+            var controls = new List<AppControl>();
+
+            foreach (var tableSchema in config.schema.tables)
+            {
+                var tableId = tableSchema.Key;
+                var control = new AppControl(tableId, tableSchema.Value.columns.Keys.ToArray(), new TableControl(tableId));
+                controls.Add(control);
+            }
+
+            this.controls = controls.ToArray();
+
+            foreach (var control in controls)
                 controlMap.Add(control.tableId, control);
         }
 
@@ -36,6 +57,33 @@ namespace AccountingApp
 
             config.container.Controls.Clear();
             config.container.Controls.Add(activeControl);
+        }
+
+        public BindingSource GetSource(string tableId, out SqlDataAdapter dataAdapter)
+        {
+            var bindingSource = new BindingSource();
+
+            string connectionString =
+                "Data Source=DESKTOP-5442AM3\\SQLEXPRESS;" +
+                "Initial Catalog=AccountingApp;" +
+                "User id=root;" +
+                "Password=14881488;";
+            var query = $"SELECT * FROM [{tableId}]";
+
+            dataAdapter = new SqlDataAdapter(query, connectionString);
+
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+
+            DataTable table = new DataTable
+            {
+                Locale = CultureInfo.InvariantCulture
+            };
+
+            dataAdapter.Fill(table);
+            bindingSource.DataSource = table;
+            
+
+            return bindingSource;
         }
 
         /// <summary>

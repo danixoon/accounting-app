@@ -18,23 +18,11 @@ namespace AccountingApp
         /// Контрол-контейнер корня приложения
         /// </summary>
         public Control container;
-        /// <summary>
-        /// Контролы, переключаемые приложением
-        /// </summary>
-        public AppControl[] controls;
+
         public AppSchema schema;
 
         public AppConfig(Control container, AppSchema schema)
         {
-            var controls = new List<AppControl>();
-
-            foreach (var tableSchema in schema.tables)
-            {
-                var control = new AppControl(tableSchema.Key, tableSchema.Value.columns.Keys.ToArray(), new TableControl());
-                controls.Add(control);
-            }
-
-            this.controls = controls.ToArray();
             this.container = container;
             this.schema = schema;
         }
@@ -45,15 +33,35 @@ namespace AccountingApp
             return table?.name;
         }
 
+        public string ResolveFKColumnName(string columnId)
+        {
+            var tableId = string.Join("", columnId.Substring(0, columnId.Length - 3).Split('_').Select(v => (v[0].ToString().ToUpper() + v.Substring(1))));
+
+            return ResolveTableName(tableId);
+        }
+
         public string ResolveColumnName(string tableId, string columnId)
         {
+            string tableName = null;
             var table = schema.tables[tableId];
-            return table?.columns[columnId];
+            var exists = table?.columns.TryGetValue(columnId, out tableName) ?? false;
+
+            if (tableName == null)
+                tableName = ResolveColumnName(columnId);
+            else if (tableName.EndsWith("_id"))
+                ResolveFKColumnName(tableName);
+
+            return tableName;
         }
 
         public string ResolveColumnName(string columnId)
         {
-            return schema.columns[columnId];
+            if (columnId.EndsWith("_id"))
+                return ResolveFKColumnName(columnId);
+            
+            schema.columns.TryGetValue(columnId, out string columnName);
+
+            return columnName;
         }
     }
 }

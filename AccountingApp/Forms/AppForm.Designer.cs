@@ -29,14 +29,16 @@
         private void InitializeComponent()
         {
             this.container = new System.Windows.Forms.Panel();
-            this.tableSwitchGroup = new System.Windows.Forms.GroupBox();
-            this.tableSwitch = new System.Windows.Forms.TableLayoutPanel();
+            this.tableActions = new System.Windows.Forms.GroupBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.отчётыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.поТекущейТаблицеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tableSwitchGroup.SuspendLayout();
+            this.switchTableBox = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tableActions.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // container
@@ -44,36 +46,21 @@
             this.container.Dock = System.Windows.Forms.DockStyle.Fill;
             this.container.Location = new System.Drawing.Point(3, 16);
             this.container.Name = "container";
-            this.container.Size = new System.Drawing.Size(712, 398);
+            this.container.Size = new System.Drawing.Size(754, 448);
             this.container.TabIndex = 0;
             // 
-            // tableSwitchGroup
+            // tableActions
             // 
-            this.tableSwitchGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tableActions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableSwitchGroup.Controls.Add(this.container);
-            this.tableSwitchGroup.Location = new System.Drawing.Point(12, 72);
-            this.tableSwitchGroup.Name = "tableSwitchGroup";
-            this.tableSwitchGroup.Size = new System.Drawing.Size(718, 417);
-            this.tableSwitchGroup.TabIndex = 3;
-            this.tableSwitchGroup.TabStop = false;
-            this.tableSwitchGroup.Text = "Таблицы";
-            // 
-            // tableSwitch
-            // 
-            this.tableSwitch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableSwitch.ColumnCount = 1;
-            this.tableSwitch.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableSwitch.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableSwitch.Location = new System.Drawing.Point(12, 27);
-            this.tableSwitch.Name = "tableSwitch";
-            this.tableSwitch.RowCount = 1;
-            this.tableSwitch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableSwitch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableSwitch.Size = new System.Drawing.Size(724, 39);
-            this.tableSwitch.TabIndex = 3;
+            this.tableActions.Controls.Add(this.container);
+            this.tableActions.Location = new System.Drawing.Point(12, 82);
+            this.tableActions.Name = "tableActions";
+            this.tableActions.Size = new System.Drawing.Size(760, 467);
+            this.tableActions.TabIndex = 3;
+            this.tableActions.TabStop = false;
+            this.tableActions.Text = "Выбранная таблица";
             // 
             // menuStrip1
             // 
@@ -82,7 +69,7 @@
             this.отчётыToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(742, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(784, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "appMenu";
             // 
@@ -106,20 +93,43 @@
             this.поТекущейТаблицеToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.поТекущейТаблицеToolStripMenuItem.Text = "По текущей таблице";
             // 
+            // switchTableBox
+            // 
+            this.switchTableBox.FormattingEnabled = true;
+            this.switchTableBox.Location = new System.Drawing.Point(6, 19);
+            this.switchTableBox.Name = "switchTableBox";
+            this.switchTableBox.Size = new System.Drawing.Size(171, 21);
+            this.switchTableBox.TabIndex = 5;
+            this.switchTableBox.SelectedIndexChanged += new System.EventHandler(this.switchTableBox_SelectedIndexChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.switchTableBox);
+            this.groupBox1.Location = new System.Drawing.Point(12, 27);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(760, 49);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Выбор таблицы";
+            // 
             // AppForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(742, 501);
-            this.Controls.Add(this.tableSwitch);
-            this.Controls.Add(this.tableSwitchGroup);
+            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.tableActions);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "AppForm";
             this.Text = "Учёт";
-            this.tableSwitchGroup.ResumeLayout(false);
+            this.tableActions.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,12 +138,13 @@
         #endregion
 
         private System.Windows.Forms.Panel container;
-        private System.Windows.Forms.GroupBox tableSwitchGroup;
-        private System.Windows.Forms.TableLayoutPanel tableSwitch;
+        private System.Windows.Forms.GroupBox tableActions;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem отчётыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem поТекущейТаблицеToolStripMenuItem;
+        private System.Windows.Forms.ComboBox switchTableBox;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

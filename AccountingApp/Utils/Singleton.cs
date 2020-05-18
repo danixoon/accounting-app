@@ -15,7 +15,7 @@ namespace AccountingApp
         {
             if (Singleton<T>.isInitialized) throw new Exception("Already initialized");
         }
-        public void Initialize()
+        protected void Initialize()
         {
             if (Singleton<T>.isInitialized) throw new Exception("Already initialized");
             Singleton<T>.instance = this as T;

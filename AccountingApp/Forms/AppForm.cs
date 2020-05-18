@@ -14,23 +14,34 @@ namespace AccountingApp
     public partial class AppForm : Form
     {
         private App app;
+        private struct SwitchBoxItem
+        {
+            public string tableId;
+            public string tableName;
+            public override string ToString()
+            {
+                return tableName;
+            }
+            public SwitchBoxItem(string tableId, string tableName)
+            {
+                this.tableId = tableId;
+                this.tableName = tableName;
+            }
+        }
 
         public void SetTable(string tableId)
         {
-            tableSwitchGroup.Text = "Таблица - " + app.config.ResolveTableName(tableId);
             app.SetControl(tableId);
         }
 
         private void GenerateTableSwitch()
         {
-            tableSwitch.Controls.Clear();
-            tableSwitch.ColumnCount = app.config.controls.Length;
-            foreach (var control in app.config.controls)
+            switchTableBox.Items.Clear();
+            foreach (var control in app.controls)
             {
-                var button = new Button() { Text = app.config.ResolveTableName(control.tableId), Dock = DockStyle.Fill };
-                button.Click += (o, e) => SetTable(control.tableId);
-                tableSwitch.Controls.Add(button);
+                switchTableBox.Items.Insert(switchTableBox.Items.Count, new SwitchBoxItem(control.tableId, app.config.ResolveTableName(control.tableId)));
             }
+            switchTableBox.SelectedIndex = 0;
         }
 
         public AppForm()
@@ -41,11 +52,18 @@ namespace AccountingApp
             var config = new AppConfig(container, schema);
 
             app = new App(config);
-            app.Initialize();
 
             GenerateTableSwitch();
 
-            SetTable(config.controls[0].tableId);
+            SetTable(app.controls[0].tableId);
+        }
+
+        private void switchTableBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var switchBox = (ComboBox)sender;
+            var selectedItem = (SwitchBoxItem)switchBox.SelectedItem;
+
+            SetTable(selectedItem.tableId);
         }
     }
 }

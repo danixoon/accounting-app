@@ -3,22 +3,143 @@
     "id": "Ид.",
     "ip_address": "IP-адрес",
     "mac_address": "MAC-адрес",
-    "name": "Имя"
+    "name": "Имя",
+    "price": "Цена",
+    "model": "Модель",
+    "key": "Номер",
+    "username": "Имя пользователя",
+    "date": "Дата"
   },
   "tables": {
-    "computer": {
-      "name": "Компьютеры",
+    "Component": {
+      "name": "Компонент",
       "columns": {
-        "name": null,
-        "ip_address": null,
-        "mac_address": null
+        "id": null,
+        "start_date": "Дата начала работы",
+        "end_date": "Дата окончания работы",
+        "component_status_id": null,
+        "component_model_id": null,
+        "entity_id": null
       }
     },
-    "printer": {
-      "name": "Принтеры",
+    "ComponentModel": {
+      "name": "Модель компонента",
       "columns": {
+        "id": null,
+        "model": null,
         "name": null,
-        "ip_address": null
+        "price": null,
+        "component_type_id": null
+      }
+    },
+    "ComponentStatus": {
+      "name": "Статус компонента",
+      "columns": {
+        "id": null,
+        "name": null
+      }
+    },
+    "ComponentType": {
+      "name": "Тип компонента",
+      "columns": {
+        "id": null,
+        "name": null
+      }
+    },
+    "Department": {
+      "name": "Отдел",
+      "columns": {
+        "id": null,
+        "name": null
+      }
+    },
+    "Employee": {
+      "name": "Сотрудник",
+      "columns": {
+        "id": null,
+        "name": null
+      }
+    },
+    "Entity": {
+      "name": "Сущность",
+      "columns": {
+        "id": null,
+        "username": null,
+        "name": null,
+        "housing": "Корпус",
+        "floor": "Этаж",
+        "department_id": null,
+        "network_type_id": null,
+        "mac_address": null,
+        "ip_address": null,
+        "network_socket_id": null,
+        "entity_model_id": null
+      }
+    },
+    "EntityModel": {
+      "name": "Модель сущности",
+      "columns": {
+        "id": null,
+        "name": null,
+        "model": null,
+        "entity_type_id": null
+      }
+    },
+    "EntityType": {
+      "name": "Тип сущности",
+      "columns": {
+        "id": null,
+        "name": null
+      }
+    },
+    "NetworkSocket": {
+      "name": "Розетка сети",
+      "columns": {
+        "id": null,
+        "name": null
+      }
+    },
+    "NetworkType": {
+      "name": "Тип сети",
+      "columns": {
+        "id": null,
+        "name": null
+      }
+    },
+    "Service": {
+      "name": "Сервис",
+      "columns": {
+        "id": null,
+        "employee_id": null,
+        "count": "Повторения",
+        "service_model_id": null,
+        "entity_id": null,
+        "date": "Дата сервиса"
+      }
+    },
+    "ServiceComponent": {
+      "name": "Компонент в сервисе",
+      "columns": {
+        "id": null,
+        "component_id": null,
+        "service_id": null
+      }
+    },
+    "ServiceModel": {
+      "name": "Модель сервиса",
+      "columns": {
+        "id": null,
+        "service_type_id": null,
+        "price": null,
+        "entity_type_id": null,
+        "component_type_id": null
+      }
+    },
+    "ServiceType": {
+      "name": "Тип сервиса",
+      "columns": {
+        "id": null,
+        "name": null
       }
     }
   }
