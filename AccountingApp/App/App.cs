@@ -26,6 +26,12 @@ namespace AccountingApp
         public List<string> controlHistory { get; private set; } = new List<string>();
         public UserControl activeControl;
 
+        private string connectionString =
+                "Data Source=DESKTOP-5442AM3\\SQLEXPRESS;" +
+                "Initial Catalog=AccountingApp;" +
+                "User id=root;" +
+                "Password=14881488;";
+
         public App(AppConfig config)
         {
             Initialize();
@@ -54,36 +60,27 @@ namespace AccountingApp
 
 
             activeControl = targetControl.control;
+            ((TableControl)activeControl).OnSelect();
 
             config.container.Controls.Clear();
             config.container.Controls.Add(activeControl);
         }
 
-        public BindingSource GetSource(string tableId, out SqlDataAdapter dataAdapter)
+        public SqlDataAdapter GetAdapter(string tableId)
         {
-            var bindingSource = new BindingSource();
-
-            string connectionString =
-                "Data Source=DESKTOP-5442AM3\\SQLEXPRESS;" +
-                "Initial Catalog=AccountingApp;" +
-                "User id=root;" +
-                "Password=14881488;";
             var query = $"SELECT * FROM [{tableId}]";
+            var dataAdapter = new SqlDataAdapter(query, connectionString); 
 
-            dataAdapter = new SqlDataAdapter(query, connectionString);
+            return dataAdapter;
+        }
 
-            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+        public SqlDataAdapter GetIdAdapter(string tableId)
+        {
+            var readableId = config.ResolveReadableFKName(tableId);
+            var query = $"SELECT [id], [{readableId}] as 'name' FROM [{tableId}]";
+            var dataAdapter = new SqlDataAdapter(query, connectionString);
 
-            DataTable table = new DataTable
-            {
-                Locale = CultureInfo.InvariantCulture
-            };
-
-            dataAdapter.Fill(table);
-            bindingSource.DataSource = table;
-            
-
-            return bindingSource;
+            return dataAdapter;
         }
 
         /// <summary>

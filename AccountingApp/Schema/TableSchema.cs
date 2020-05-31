@@ -15,6 +15,7 @@ namespace AccountingApp
         public class TableSchema
         {
             public string name;
+            public string readableColumnId;
             public Dictionary<string, string> columns;
         }
         public Dictionary<string, string> columns;

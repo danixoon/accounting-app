@@ -36,6 +36,7 @@
             this.поТекущейТаблицеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.switchTableBox = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.добавитьНовуюСущностьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableActions.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -75,9 +76,11 @@
             // 
             // файлToolStripMenuItem
             // 
+            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.добавитьНовуюСущностьToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.файлToolStripMenuItem.Text = "Файл";
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
+            this.файлToolStripMenuItem.Text = "Действия";
             // 
             // отчётыToolStripMenuItem
             // 
@@ -114,6 +117,12 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Выбор таблицы";
             // 
+            // добавитьНовуюСущностьToolStripMenuItem
+            // 
+            this.добавитьНовуюСущностьToolStripMenuItem.Name = "добавитьНовуюСущностьToolStripMenuItem";
+            this.добавитьНовуюСущностьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.добавитьНовуюСущностьToolStripMenuItem.Text = "Добавить данные";
+            // 
             // AppForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -145,6 +154,7 @@
         private System.Windows.Forms.ToolStripMenuItem поТекущейТаблицеToolStripMenuItem;
         private System.Windows.Forms.ComboBox switchTableBox;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ToolStripMenuItem добавитьНовуюСущностьToolStripMenuItem;
     }
 }
 

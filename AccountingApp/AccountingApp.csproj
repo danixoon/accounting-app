@@ -52,6 +52,18 @@
     <Compile Include="App\App.cs" />
     <Compile Include="App\AppConfig.cs" />
     <Compile Include="App\AppControl.cs" />
+    <Compile Include="Forms\Entity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Entity.Designer.cs">
+      <DependentUpon>Entity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FieldInput.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\FieldInput.Designer.cs">
+      <DependentUpon>FieldInput.cs</DependentUpon>
+    </Compile>
     <Compile Include="Schema\TableSchema.cs" />
     <Compile Include="Forms\AppForm.cs">
       <SubType>Form</SubType>
@@ -70,6 +82,12 @@
     <Compile Include="Utils\Singleton.cs" />
     <EmbeddedResource Include="Forms\AppForm.resx">
       <DependentUpon>AppForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Entity.resx">
+      <DependentUpon>Entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FieldInput.resx">
+      <DependentUpon>FieldInput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TableControl.resx">
       <DependentUpon>TableControl.cs</DependentUpon>

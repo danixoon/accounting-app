@@ -65,5 +65,10 @@ namespace AccountingApp
 
             SetTable(selectedItem.tableId);
         }
+
+        private void menu_showEntities_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
