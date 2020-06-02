@@ -69,16 +69,14 @@ namespace AccountingApp
 
             app = new App(config);
 
-            if (false)
+            Auth auth = new Auth();
+            if (auth.ShowDialog() != DialogResult.OK)
             {
-                Auth auth = new Auth();
-                if (auth.ShowDialog() != DialogResult.OK)
-                {
-                    Application.Exit();
-                    return;
-                }
-
+                Application.Exit();
+                return;
             }
+
+
 
             GenerateTableSwitch();
 
