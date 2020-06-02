@@ -13,14 +13,19 @@ using System.Windows.Forms;
 
 namespace AccountingApp.Forms
 {
+    // Контрол, отображающий таблицу и способы её управления (сохранение, отмена изменений)
     public partial class TableControl : UserControl
     {
+        // Идентификатор таблицы
         private string tableId;
+        // SQL адаптер данных, заполняющий таблицу
         private SqlDataAdapter dataAdapter;
+        // Полученные данные с таблицы
         private DataTable dataTable;
         public TableControl(string tableId)
         {
             InitializeComponent();
+            // Необходимо для того, чтобы контрол расширился на весь контейнер
             Dock = DockStyle.Fill;
 
             // Отключение генерации столбцов автоматически
@@ -29,12 +34,15 @@ namespace AccountingApp.Forms
             this.tableId = tableId;
         }
 
+        // Вызывает App.cs, когда выбирается таблица
         public void OnSelect()
         {
+            // При выборе - перезагружаем данные
             Reset();
         }
 
 
+        // Функция, перезагружающая данные из таблицы и генерирующая столбцы
         void Reset()
         {
             FetchData();
@@ -42,26 +50,25 @@ namespace AccountingApp.Forms
         }
 
         
-
+        // Функция, генерирующая столбцы из данных
         void GenerateColumns()
         {
+            // Удаляем все уже созданные столбцы
             dataGridView.Columns.Clear();
+            // Для каждого столбца в столбцах таблицы
             for (int i = 0; i < dataTable.Columns.Count; i++)
             {
+                // Получаем идентификатор столбца
                 var columnId = dataTable.Columns[i].ColumnName;
+                // Получаем читаемое имя столбца
                 var columnName = App.instance.config.ResolveColumnName(tableId, columnId);
 
+                // Если ид. столбца оканчивается на _id - понимаем, что столбец является вторичным ключом
                 if (columnId.EndsWith("_id"))
                 {
+
                     var column = new DataGridViewComboBoxColumn() { Name = columnName, DataPropertyName = columnId, AutoComplete = true, ValueMember = "id", DisplayMember = "name" };
-                    var adapter = App.instance.GetIdAdapter(App.instance.config.ResolveTableId(columnId));
-
-                    var data = new DataTable
-                    {
-                        Locale = CultureInfo.InvariantCulture
-                    };
-
-                    adapter.Fill(data);
+                    var data = App.instance.GetData(App.instance.GetIdAdapter(App.instance.config.ResolveTableId(columnId)));
 
                     column.DataSource = data;
                     dataGridView.Columns.Add(column);
@@ -76,37 +83,37 @@ namespace AccountingApp.Forms
             }
         }
 
-
+        // Получает данные с бд и обновляет таблицу
         void FetchData()
         {
-            dataAdapter = App.instance.GetAdapter(tableId);
-
-            dataTable = new DataTable
-            {
-                Locale = CultureInfo.InvariantCulture
-            };
-
-            dataAdapter.Fill(dataTable);
+            dataTable = App.instance.GetData(App.instance.GetAdapter(tableId));
 
             dataGridView.DataSource = dataTable;
         }
 
+        
+        // При сохранении
         private void saveChangesButton_Click(object sender, EventArgs e)
         {
             var dataTable = ((DataTable)dataGridView.DataSource);
-
+            // Получаем изменения
             var changes = dataTable.GetChanges();
 
+            // Если изменений нет - функция выходит
             if (changes == null) return;
 
+            // Иначе создаются билдеры для обновления в бд
             SqlCommandBuilder builder = new SqlCommandBuilder(dataAdapter);
 
+            // Необходимая функция для апдейта данных средствами шарпа лёгким способом
             builder.GetUpdateCommand();
             dataAdapter.Update(changes);
 
+            // Обнуляем изменения, всё сохранено
             dataTable.AcceptChanges();
         }
 
+        // Перезагружаем данные, обновляя их и обнуляя изменения
         private void resetChanges_Click(object sender, EventArgs e)
         {
             Reset();

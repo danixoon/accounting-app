@@ -19,6 +19,7 @@ namespace AccountingApp
         /// </summary>
         public Control container;
 
+        // Схема данных
         public AppSchema schema;
 
         public AppConfig(Control container, AppSchema schema)
@@ -36,32 +37,29 @@ namespace AccountingApp
             return readableId ?? "id";
         }
 
+        // Получает читаемое имя таблицы по её ид
         public string ResolveTableName(string tableId)
         {
             var table = schema.tables[tableId];
             return table?.name;
         }
 
+        // Возвращает ид. таблицы по вторичному ключу
         public string ResolveTableId(string columnId)
         {
             var tableId = string.Join("", columnId.Substring(0, columnId.Length - 3).Split('_').Select(v => (v[0].ToString().ToUpper() + v.Substring(1))));
             return tableId;
         }
 
+        // Возвращает имя столбца по вторичному ключу
         public string ResolveFKColumnName(string columnId)
         {
-            var tableId = ResolveFKColumnId(columnId);
+            var tableId = ResolveTableId(columnId);
 
             return ResolveTableName(tableId);
         }
 
-        public string ResolveFKColumnId(string columnId)
-        {
-            var tableId = ResolveTableId(columnId);
-
-            return tableId;
-        }
-
+        // Возвращает имя столбца по таблице и столбцу
         public string ResolveColumnName(string tableId, string columnId)
         {
             string tableName = null;
@@ -76,6 +74,7 @@ namespace AccountingApp
             return tableName;
         }
 
+        // Возвращает имя столбца по столбцу (только дефолтные значения)
         public string ResolveColumnName(string columnId)
         {
             if (columnId.EndsWith("_id"))

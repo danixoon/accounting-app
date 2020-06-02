@@ -20,12 +20,15 @@ namespace AccountingApp.Forms
         private void login_Click(object sender, EventArgs e)
         {
           
+            // Вызываем метод проверки пары логина/пароля
             if (App.instance.CheckAuth(usernameBox.Text, passwordBox.Text))
             {
+                // И если ок - закрываем авторизацию
                 DialogResult = DialogResult.OK;
                 Close();
             }
             else
+                // Иначе крякаем ошибочкой
                 MessageBox.Show("Неверное имя пользователя или пароль.");
             
         }

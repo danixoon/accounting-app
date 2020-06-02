@@ -79,7 +79,7 @@
             this.Controls.Add(this.addDataButton);
             this.MinimumSize = new System.Drawing.Size(395, 400);
             this.Name = "AddDataForm";
-            this.Text = "AddDataForm";
+            this.Text = "Добавление данных";
             this.Load += new System.EventHandler(this.AddDataForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

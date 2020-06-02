@@ -51,7 +51,6 @@
   <ItemGroup>
     <Compile Include="App\App.cs" />
     <Compile Include="App\AppConfig.cs" />
-    <Compile Include="App\AppControl.cs" />
     <Compile Include="Forms\AddDataForm.cs">
       <SubType>Form</SubType>
     </Compile>

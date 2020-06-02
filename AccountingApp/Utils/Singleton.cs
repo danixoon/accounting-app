@@ -7,6 +7,10 @@ using System.Windows.Forms;
 
 namespace AccountingApp
 {
+    // Синглтон. Позволяет создать класс, присвоив статическое ему поле instance
+    // К которому в последствии можно обращаться. Это паттерн в программировании, можешь почитать о нём
+    // Синглтон нельзя создать дважды, данный класс реализует эту проверку
+    // Объективно - он не нужен, но изначально задумывался и хорошая вещь в принципе
     public abstract class Singleton<T> where T : class
     {
         public static bool isInitialized { get; private set; }
