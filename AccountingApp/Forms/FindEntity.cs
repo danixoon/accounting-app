@@ -100,7 +100,7 @@ INNER JOIN [ComponentType] ON [ComponentType].[id] = [ComponentModel].[component
 
             var data = App.instance.GetData(App.instance.GetQueryAdapter(fullQuery));
             componentsBox.DataSource = data;
-            componentsBox.Rows.Add();
+            
         }
 
         private void entityTypeBox_SelectedIndexChanged(object sender, EventArgs e)
