@@ -39,7 +39,6 @@ namespace AccountingApp.Forms
         {
             FetchData();
             GenerateColumns();
-            GenerateAddFields();
         }
 
         
@@ -77,28 +76,6 @@ namespace AccountingApp.Forms
             }
         }
 
-        void GenerateAddFields()
-        {
-            addGroup.Controls.Clear();
-            addGroup.RowCount = dataTable.Columns.Count;
-
-            foreach (DataColumn column in dataTable.Columns)
-            {
-                var columnId = column.ColumnName;
-                var input = new FieldInput(App.instance.config.ResolveColumnName(tableId, columnId));
-                input.Dock = DockStyle.Fill;
-
-                addGroup.Controls.Add(input);
-            }
-
-            // Автовысота для каждого стиля строки
-            TableLayoutRowStyleCollection styles = addGroup.RowStyles;
-            foreach (RowStyle style in styles)
-            {
-                style.SizeType = SizeType.AutoSize;
-            }
-
-        }
 
         void FetchData()
         {

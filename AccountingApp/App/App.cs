@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,15 +27,15 @@ namespace AccountingApp
         public List<string> controlHistory { get; private set; } = new List<string>();
         public UserControl activeControl;
 
-        private string connectionString =
-                "Data Source=DESKTOP-5442AM3\\SQLEXPRESS;" +
-                "Initial Catalog=AccountingApp;" +
-                "User id=root;" +
-                "Password=14881488;";
+        private string connectionString;
+
+        public string tableId { private set; get; }
 
         public App(AppConfig config)
         {
             Initialize();
+
+            connectionString = $"Data Source={config.schema.dbDataSource}; Initial Catalog={config.schema.dbInitialCatalog}; Integrated Security=true;";
 
             this.config = config;
 
@@ -53,11 +54,22 @@ namespace AccountingApp
                 controlMap.Add(control.tableId, control);
         }
 
+        public bool CheckAuth(string username, string password)
+        {
+            var query = $"SELECT password FROM [Account] WHERE username='{username}'";
+            var dataAdapter = new SqlDataAdapter(query, connectionString);
+            DataTable table = new DataTable();
+            dataAdapter.Fill(table);
+
+            return table.Rows.Count > 0 ? table.Rows[0]["password"].ToString() == password : false;
+        }
+
         public void SetControl(string tableId)
         {
             if (!controlMap.TryGetValue(tableId, out AppControl targetControl))
                 throw new KeyNotFoundException("Invalid control id");
 
+            this.tableId = tableId;
 
             activeControl = targetControl.control;
             ((TableControl)activeControl).OnSelect();
@@ -69,18 +81,55 @@ namespace AccountingApp
         public SqlDataAdapter GetAdapter(string tableId)
         {
             var query = $"SELECT * FROM [{tableId}]";
-            var dataAdapter = new SqlDataAdapter(query, connectionString); 
+            var dataAdapter = new SqlDataAdapter(query, connectionString);
 
             return dataAdapter;
         }
 
-        public SqlDataAdapter GetIdAdapter(string tableId)
+        public SqlDataAdapter GetIdAdapter(string tableId, string readableId = null)
         {
-            var readableId = config.ResolveReadableFKName(tableId);
+            readableId = readableId ?? config.ResolveReadableFKName(tableId);
             var query = $"SELECT [id], [{readableId}] as 'name' FROM [{tableId}]";
             var dataAdapter = new SqlDataAdapter(query, connectionString);
 
             return dataAdapter;
+        }
+
+        public SqlDataAdapter GetQueryAdapter(string query)
+        {
+            var adapter = new SqlDataAdapter(query, connectionString);
+            return adapter;
+        }
+
+        public DataTable GetData(SqlDataAdapter adapter)
+        {
+            DataTable table = new DataTable() { Locale = CultureInfo.InvariantCulture };
+            adapter.Fill(table);
+            return table;
+        }
+
+        public string InsertData(string tableId, Dictionary<string, string> data)
+        {
+
+            var columns = $"[{string.Join("], [", data.Keys)}]";
+            var values = $"'{string.Join("', '", data.Values)}'";
+
+            var query = $"INSERT INTO {tableId}({columns}) VALUES ({values})";
+
+            try
+            {
+                var sql = new SqlConnection(connectionString);
+                sql.Open();
+                var command = sql.CreateCommand();
+                command.CommandText = query;
+                var count = command.ExecuteNonQuery();
+                sql.Close();
+                return null;
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         /// <summary>
@@ -89,10 +138,21 @@ namespace AccountingApp
         /// <returns> Объект схемы данных приложения </returns>
         public static AppSchema LoadSchema()
         {
-            var data = Encoding.UTF8.GetString(Properties.Resources.schema);
-            var schema = JsonConvert.DeserializeObject<AppSchema>(data);
+            try
+            {
+                string fileName = ".\\schema.json";
 
-            return schema;
+                string text = File.ReadAllText(fileName);
+
+                var schema = JsonConvert.DeserializeObject<AppSchema>(text);
+
+                return schema;
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+                throw new Exception();
+            }
         }
     }
 }

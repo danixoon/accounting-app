@@ -52,11 +52,23 @@
     <Compile Include="App\App.cs" />
     <Compile Include="App\AppConfig.cs" />
     <Compile Include="App\AppControl.cs" />
-    <Compile Include="Forms\Entity.cs">
+    <Compile Include="Forms\AddDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Entity.Designer.cs">
-      <DependentUpon>Entity.cs</DependentUpon>
+    <Compile Include="Forms\AddDataForm.Designer.cs">
+      <DependentUpon>AddDataForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Auth.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Auth.Designer.cs">
+      <DependentUpon>Auth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FindEntity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FindEntity.Designer.cs">
+      <DependentUpon>FindEntity.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FieldInput.cs">
       <SubType>UserControl</SubType>
@@ -80,11 +92,17 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Singleton.cs" />
+    <EmbeddedResource Include="Forms\AddDataForm.resx">
+      <DependentUpon>AddDataForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AppForm.resx">
       <DependentUpon>AppForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Entity.resx">
-      <DependentUpon>Entity.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Auth.resx">
+      <DependentUpon>Auth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FindEntity.resx">
+      <DependentUpon>FindEntity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FieldInput.resx">
       <DependentUpon>FieldInput.cs</DependentUpon>

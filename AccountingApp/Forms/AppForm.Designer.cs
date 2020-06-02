@@ -32,11 +32,11 @@
             this.tableActions = new System.Windows.Forms.GroupBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showAddDataForm_menu = new System.Windows.Forms.ToolStripMenuItem();
             this.отчётыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.поТекущейТаблицеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findEntity_menu = new System.Windows.Forms.ToolStripMenuItem();
             this.switchTableBox = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.добавитьНовуюСущностьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableActions.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -77,24 +77,32 @@
             // файлToolStripMenuItem
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.добавитьНовуюСущностьToolStripMenuItem});
+            this.showAddDataForm_menu});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.файлToolStripMenuItem.Text = "Действия";
             // 
+            // showAddDataForm_menu
+            // 
+            this.showAddDataForm_menu.Name = "showAddDataForm_menu";
+            this.showAddDataForm_menu.Size = new System.Drawing.Size(170, 22);
+            this.showAddDataForm_menu.Text = "Добавить данные";
+            this.showAddDataForm_menu.Click += new System.EventHandler(this.showAddDataForm_menu_Click);
+            // 
             // отчётыToolStripMenuItem
             // 
             this.отчётыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.поТекущейТаблицеToolStripMenuItem});
+            this.findEntity_menu});
             this.отчётыToolStripMenuItem.Name = "отчётыToolStripMenuItem";
             this.отчётыToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.отчётыToolStripMenuItem.Text = "Отчёты";
             // 
-            // поТекущейТаблицеToolStripMenuItem
+            // findEntity_menu
             // 
-            this.поТекущейТаблицеToolStripMenuItem.Name = "поТекущейТаблицеToolStripMenuItem";
-            this.поТекущейТаблицеToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.поТекущейТаблицеToolStripMenuItem.Text = "По текущей таблице";
+            this.findEntity_menu.Name = "findEntity_menu";
+            this.findEntity_menu.Size = new System.Drawing.Size(180, 22);
+            this.findEntity_menu.Text = "Поиск сущностей";
+            this.findEntity_menu.Click += new System.EventHandler(this.findEntity_menu_Click);
             // 
             // switchTableBox
             // 
@@ -117,12 +125,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Выбор таблицы";
             // 
-            // добавитьНовуюСущностьToolStripMenuItem
-            // 
-            this.добавитьНовуюСущностьToolStripMenuItem.Name = "добавитьНовуюСущностьToolStripMenuItem";
-            this.добавитьНовуюСущностьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.добавитьНовуюСущностьToolStripMenuItem.Text = "Добавить данные";
-            // 
             // AppForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -135,6 +137,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "AppForm";
             this.Text = "Учёт";
+            this.Load += new System.EventHandler(this.AppForm_Load);
             this.tableActions.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -151,10 +154,10 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem отчётыToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem поТекущейТаблицеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem findEntity_menu;
         private System.Windows.Forms.ComboBox switchTableBox;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ToolStripMenuItem добавитьНовуюСущностьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showAddDataForm_menu;
     }
 }
 

@@ -28,33 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.fieldValue = new System.Windows.Forms.TextBox();
             this.fieldName = new System.Windows.Forms.GroupBox();
+            this.flowLayoutContainer = new System.Windows.Forms.FlowLayoutPanel();
             this.fieldName.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // fieldValue
-            // 
-            this.fieldValue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.fieldValue.Location = new System.Drawing.Point(6, 19);
-            this.fieldValue.Name = "fieldValue";
-            this.fieldValue.Size = new System.Drawing.Size(145, 20);
-            this.fieldValue.TabIndex = 0;
             // 
             // fieldName
             // 
             this.fieldName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.fieldName.Controls.Add(this.fieldValue);
+            this.fieldName.Controls.Add(this.flowLayoutContainer);
             this.fieldName.Location = new System.Drawing.Point(3, 3);
             this.fieldName.Name = "fieldName";
             this.fieldName.Size = new System.Drawing.Size(157, 49);
             this.fieldName.TabIndex = 1;
             this.fieldName.TabStop = false;
             this.fieldName.Text = "Имя";
+            // 
+            // flowLayoutContainer
+            // 
+            this.flowLayoutContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutContainer.Location = new System.Drawing.Point(3, 16);
+            this.flowLayoutContainer.Name = "flowLayoutContainer";
+            this.flowLayoutContainer.Size = new System.Drawing.Size(151, 30);
+            this.flowLayoutContainer.TabIndex = 0;
             // 
             // FieldInput
             // 
@@ -64,14 +62,12 @@
             this.Name = "FieldInput";
             this.Size = new System.Drawing.Size(163, 56);
             this.fieldName.ResumeLayout(false);
-            this.fieldName.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox fieldValue;
         private System.Windows.Forms.GroupBox fieldName;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutContainer;
     }
 }

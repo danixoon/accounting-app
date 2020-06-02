@@ -12,6 +12,11 @@ namespace AccountingApp
 
     public class AppSchema
     {
+        public string dbDataSource;
+        public string dbInitialCatalog;
+        public string dbUser;
+        public string dbPassword;
+
         public class TableSchema
         {
             public string name;

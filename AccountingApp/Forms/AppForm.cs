@@ -47,15 +47,6 @@ namespace AccountingApp
         public AppForm()
         {
             InitializeComponent();
-
-            var schema = App.LoadSchema();
-            var config = new AppConfig(container, schema);
-
-            app = new App(config);
-
-            GenerateTableSwitch();
-
-            SetTable(app.controls[0].tableId);
         }
 
         private void switchTableBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -69,6 +60,42 @@ namespace AccountingApp
         private void menu_showEntities_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void AppForm_Load(object sender, EventArgs e)
+        {
+            var schema = App.LoadSchema();
+            var config = new AppConfig(container, schema);
+
+            app = new App(config);
+
+            if (false)
+            {
+                Auth auth = new Auth();
+                if (auth.ShowDialog() != DialogResult.OK)
+                {
+                    Application.Exit();
+                    return;
+                }
+
+            }
+
+            GenerateTableSwitch();
+
+            SetTable(app.controls[0].tableId);
+        }
+
+        private void showAddDataForm_menu_Click(object sender, EventArgs e)
+        {
+            var form = new AddDataForm(App.instance.tableId);
+            form.ShowDialog();
+            app.SetControl(App.instance.tableId);
+        }
+
+        private void findEntity_menu_Click(object sender, EventArgs e)
+        {
+            var form = new FindEntity();
+            form.ShowDialog();
         }
     }
 }

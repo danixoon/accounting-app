@@ -1,4 +1,8 @@
 {
+  "dbPassword": "14881488",
+  "dbInitialCatalog": "AccountingApp",
+  "dbUser": "root",
+  "dbDataSource": "DESKTOP-5442AM3\\SQLEXPRESS",
   "columns": {
     "id": "Ид.",
     "ip_address": "IP-адрес",
@@ -16,6 +20,7 @@
       "readableColumnId": null,
       "columns": {
         "id": null,
+        "key":  null,
         "start_date": "Дата начала работы",
         "end_date": "Дата окончания работы",
         "component_status_id": null,
