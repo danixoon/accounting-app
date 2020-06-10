@@ -79,21 +79,21 @@ namespace AccountingApp
             
             app = new App(config);
 
-            //// Создаём формочку авторизации
-            //Auth auth = new Auth();
-            //if (auth.ShowDialog() != DialogResult.OK)
-            //{
-            //    // Если авторизация не прошла - отключаем приложение
-            //    Application.Exit();
-            //    return;
-            //}
-            //else
-            //{
+            // Создаём формочку авторизации
+            Auth auth = new Auth();
+            if (auth.ShowDialog() != DialogResult.OK)
+            {
+                // Если авторизация не прошла - отключаем приложение
+                Application.Exit();
+                return;
+            }
+            else
+            {
                 // Иначе генерируем переключатели таблиц и ставим первую таблицу
                 // в списке таблиц на активную
                 GenerateTableSwitch();
                 SetTable(app.controlMap.First().Key);
-            //}
+            }
         }
 
         // Вызывает формочку на добавление данных в таблицу
