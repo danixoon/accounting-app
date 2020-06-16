@@ -86,7 +86,8 @@ namespace AccountingApp.Forms
         // Получает данные с бд и обновляет таблицу
         void FetchData()
         {
-            dataTable = App.instance.GetData(App.instance.GetAdapter(tableId));
+            dataAdapter = App.instance.GetAdapter(tableId);
+            dataTable = App.instance.GetData(dataAdapter);
 
             dataGridView.DataSource = dataTable;
         }
