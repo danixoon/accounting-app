@@ -15,6 +15,7 @@ namespace AccountingApp.Forms
         public Auth()
         {
             InitializeComponent();
+            this.ActiveControl = usernameBox;
         }
 
         private void login_Click(object sender, EventArgs e)

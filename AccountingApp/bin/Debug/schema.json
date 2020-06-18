@@ -17,10 +17,10 @@
   "tables": {
     "Component": {
       "name": "Компонент",
-      "readableColumnId": "ComponentModel.name",
+      "readableColumnId": "ComponentModel",
       "columns": {
         "id": null,
-        "key":  null,
+        "key": null,
         "start_date": "Дата начала работы",
         "end_date": "Дата окончания работы",
         "component_status_id": null,
@@ -73,7 +73,7 @@
     },
     "Entity": {
       "name": "Сущность",
-      "readableColumnId": null,
+      "readableColumnId": "EntityModel",
       "columns": {
         "id": null,
         "username": null,
@@ -123,7 +123,7 @@
     },
     "Service": {
       "name": "Сервис",
-      "readableColumnId": null,
+      "readableColumnId": "ServiceModel",
       "columns": {
         "id": null,
         "employee_id": null,
@@ -144,21 +144,13 @@
     },
     "ServiceModel": {
       "name": "Модель сервиса",
-      "readableColumnId": "ComponentType.name",
-      "columns": {
-        "id": null,
-        "service_type_id": null,
-        "price": null,
-        "entity_type_id": null,
-        "component_type_id": null
-      }
-    },
-    "ServiceType": {
-      "name": "Тип сервиса",
       "readableColumnId": "name",
       "columns": {
         "id": null,
-        "name": null
+        "price": null,
+        "name": null,
+        "entity_type_id": null,
+        "component_type_id": null
       }
     }
   }

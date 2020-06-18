@@ -42,10 +42,24 @@ namespace AccountingApp.Forms
                     // Получаем ид. таблицы, на которую ссылается этот ключ
                     var fkTableId = App.instance.config.ResolveTableId(col.Key);
                     // Получаем данные таблицы
-                    var data = App.instance.GetData(App.instance.GetIdAdapter(fkTableId));
+                    DataTable data = null;
+//                    switch (fkTableId)
+//                    {
+//                        case "ServiceComponent":
+//                            if (col.Key == "service_id")
+//                                data = App.instance.GetData(App.instance.GetIdAdapter(fkTableId, null, $@"
+//INNER JOIN [Service] se ON [ServiceComponent].[service_id] = se.[id]
+//INNER JOIN [ServiceModel] sem ON sem.[id] = se.[service_model_id]
+//INNER JOIN [Component] ON [ServiceComponent].[component_id] = [Component].[id]
+//INNER JOIN [ComponentModel] ON [ComponentModel].[id] = [Component].[component_model_id]
+//WHERE [ComponentModel].[component_type_id] = [ServiceModel].[component_type_id]
+//"));
+//                            break;
+//                    }
+                    
                     
                     // Создаём дропдаун с данными первичного ключа и названия из таблицы
-                    control = new FieldInput(name, col.Key, data, "name", "data");
+                    control = new FieldInput(name, col.Key, data ?? App.instance.GetData(App.instance.GetIdAdapter(fkTableId)), "name", "data");
                 }
                 // В ином случае создаётся обычное текстовое поле
                 else control = new FieldInput(name, col.Key);

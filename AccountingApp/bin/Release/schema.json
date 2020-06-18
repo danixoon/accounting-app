@@ -17,10 +17,9 @@
   "tables": {
     "Component": {
       "name": "Компонент",
-      "readableColumnId": "ComponentModel.name",
+      "readableColumnId": null,
       "columns": {
         "id": null,
-        "key":  null,
         "start_date": "Дата начала работы",
         "end_date": "Дата окончания работы",
         "component_status_id": null,
@@ -144,7 +143,7 @@
     },
     "ServiceModel": {
       "name": "Модель сервиса",
-      "readableColumnId": "ComponentType.name",
+      "readableColumnId": null,
       "columns": {
         "id": null,
         "service_type_id": null,

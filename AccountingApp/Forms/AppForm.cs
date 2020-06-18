@@ -109,7 +109,7 @@ namespace AccountingApp
         private void findEntity_menu_Click(object sender, EventArgs e)
         {
             // Открываем формочку поиска
-            var form = new FindEntity();
+            var form = new FindComponents();
             form.ShowDialog();
         }
     }

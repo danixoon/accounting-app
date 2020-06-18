@@ -81,6 +81,7 @@ namespace AccountingApp.Forms
                 //dataGridView.Columns[i].HeaderText = columnName;
                 //tableData.Columns[i] = new DataGridViewCheckBoxColumn();
             }
+            dataGridView.AutoResizeColumns();
         }
 
         // Получает данные с бд и обновляет таблицу

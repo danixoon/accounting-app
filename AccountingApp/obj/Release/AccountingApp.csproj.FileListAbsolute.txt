@@ -1,0 +1,17 @@
+C:\Users\D\source\repos\AccountingApp\AccountingApp\bin\Release\AccountingApp.exe.config
+C:\Users\D\source\repos\AccountingApp\AccountingApp\bin\Release\AccountingApp.exe
+C:\Users\D\source\repos\AccountingApp\AccountingApp\bin\Release\AccountingApp.pdb
+C:\Users\D\source\repos\AccountingApp\AccountingApp\bin\Release\Newtonsoft.Json.dll
+C:\Users\D\source\repos\AccountingApp\AccountingApp\bin\Release\Newtonsoft.Json.xml
+C:\Users\D\source\repos\AccountingApp\AccountingApp\obj\Release\AccountingApp.csprojAssemblyReference.cache
+C:\Users\D\source\repos\AccountingApp\AccountingApp\obj\Release\AccountingApp.AppForm.resources
+C:\Users\D\source\repos\AccountingApp\AccountingApp\obj\Release\AccountingApp.Forms.Entity.resources
+C:\Users\D\source\repos\AccountingApp\AccountingApp\obj\Release\AccountingApp.Forms.FieldInput.resources
+C:\Users\D\source\repos\AccountingApp\AccountingApp\obj\Release\AccountingApp.Forms.TableControl.resources
+C:\Users\D\source\repos\AccountingApp\AccountingApp\obj\Release\AccountingApp.Properties.Resources.resources
+C:\Users\D\source\repos\AccountingApp\AccountingApp\obj\Release\AccountingApp.csproj.GenerateResource.cache
+C:\Users\D\source\repos\AccountingApp\AccountingApp\obj\Release\AccountingApp.csproj.CoreCompileInputs.cache
+C:\Users\D\source\repos\AccountingApp\AccountingApp\obj\Release\AccountingApp.csproj.CopyComplete
+C:\Users\D\source\repos\AccountingApp\AccountingApp\obj\Release\AccountingApp.exe
+C:\Users\D\source\repos\AccountingApp\AccountingApp\obj\Release\AccountingApp.pdb
+C:\Users\D\source\repos\AccountingApp\AccountingApp\obj\Release\AccountingApp.Forms.Auth.resources

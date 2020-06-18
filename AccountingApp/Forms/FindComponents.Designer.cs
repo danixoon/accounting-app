@@ -1,6 +1,6 @@
 ﻿namespace AccountingApp.Forms
 {
-    partial class FindEntity
+    partial class FindComponents
     {
         /// <summary>
         /// Required designer variable.
@@ -119,7 +119,7 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "Тип компонента";
             // 
-            // FindEntity
+            // FindComponents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -132,8 +132,8 @@
             this.Controls.Add(this.entityUserNameBox);
             this.Controls.Add(this.entityTypeBox);
             this.MinimumSize = new System.Drawing.Size(502, 39);
-            this.Name = "FindEntity";
-            this.Text = "Поиск сущностей";
+            this.Name = "FindComponents";
+            this.Text = "Поиск компонентов";
             ((System.ComponentModel.ISupportInitialize)(this.componentsBox)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

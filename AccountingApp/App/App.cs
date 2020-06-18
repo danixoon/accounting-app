@@ -115,11 +115,22 @@ namespace AccountingApp
         }
 
         // Возвращает все идентификаторы таблицы, выводя в качестве второго ключа - ключ с читаемым значением
-        public SqlDataAdapter GetIdAdapter(string tableId, string readableId = null)
+        public SqlDataAdapter GetIdAdapter(string tableId, string readableId = null, string condition = null)
         {
             // Если ключ не задан в аргументах - используем тот, что указан в конфигурации
             readableId = readableId ?? config.ResolveReadableFKName(tableId);
-            var query = $"SELECT [id], [{readableId}] as 'name' FROM [{tableId}]";
+            var readableIdPath = readableId.Split('.');
+
+            string query;
+            if(readableIdPath.Length == 1 && readableId[0].ToString().ToUpper() != readableId[0].ToString())
+              query = $"SELECT [id], CONCAT ('[', [id], '] ', [{readableId}]) as 'name' FROM [{tableId}] {condition ?? ""}";
+            else
+            {
+                var foreignTableId = readableIdPath[0];
+                var foreignColumnId = config.ToSneakCase(readableIdPath[0]) + "_id";
+                readableId = readableIdPath.Length == 1 ? config.ResolveReadableFKName(foreignTableId) : readableIdPath[1];
+                query = $"SELECT [{tableId}].[id], CONCAT ('[', [{tableId}].[id], '] ', [{foreignTableId}].[{readableId}]) as 'name' FROM [{tableId}] INNER JOIN [{foreignTableId}] ON [{foreignTableId}].[id] = [{tableId}].[{foreignColumnId}] {condition ?? ""}";
+            }
             
 
             return GetQueryAdapter(query);

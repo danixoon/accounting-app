@@ -11,9 +11,9 @@ using System.Windows.Forms;
 namespace AccountingApp.Forms
 {
     // Форма поиска по сущностям
-    public partial class FindEntity : Form
+    public partial class FindComponents : Form
     {
-        public FindEntity()
+        public FindComponents()
         {
             InitializeComponent();
 

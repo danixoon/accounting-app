@@ -42,7 +42,7 @@
             this.login.Location = new System.Drawing.Point(12, 118);
             this.login.Name = "login";
             this.login.Size = new System.Drawing.Size(222, 62);
-            this.login.TabIndex = 0;
+            this.login.TabIndex = 100;
             this.login.Text = "Войти";
             this.login.UseVisualStyleBackColor = true;
             this.login.Click += new System.EventHandler(this.login_Click);
@@ -64,7 +64,7 @@
             this.usernameBox.Location = new System.Drawing.Point(6, 19);
             this.usernameBox.Name = "usernameBox";
             this.usernameBox.Size = new System.Drawing.Size(210, 20);
-            this.usernameBox.TabIndex = 0;
+            this.usernameBox.TabIndex = 102;
             // 
             // groupBox2
             // 
@@ -81,7 +81,7 @@
             this.passwordBox.Location = new System.Drawing.Point(6, 19);
             this.passwordBox.Name = "passwordBox";
             this.passwordBox.Size = new System.Drawing.Size(210, 20);
-            this.passwordBox.TabIndex = 0;
+            this.passwordBox.TabIndex = 101;
             // 
             // Auth
             // 

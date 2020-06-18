@@ -63,11 +63,11 @@
     <Compile Include="Forms\Auth.Designer.cs">
       <DependentUpon>Auth.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FindEntity.cs">
+    <Compile Include="Forms\FindComponents.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FindEntity.Designer.cs">
-      <DependentUpon>FindEntity.cs</DependentUpon>
+    <Compile Include="Forms\FindComponents.Designer.cs">
+      <DependentUpon>FindComponents.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FieldInput.cs">
       <SubType>UserControl</SubType>
@@ -100,8 +100,8 @@
     <EmbeddedResource Include="Forms\Auth.resx">
       <DependentUpon>Auth.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FindEntity.resx">
-      <DependentUpon>FindEntity.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FindComponents.resx">
+      <DependentUpon>FindComponents.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FieldInput.resx">
       <DependentUpon>FieldInput.cs</DependentUpon>

@@ -51,6 +51,16 @@ namespace AccountingApp
             return tableId;
         }
 
+        public string ToSneakCase(string text)
+        {
+            return string.Join("", text.Select((c, i) =>
+            {
+                var ch = c.ToString();
+                if (i == 0) return ch.ToLower();
+                return ch.ToUpper() == ch ? $"_{ch.ToLower()}" : ch;
+            }));
+        }
+
         // Возвращает имя столбца по вторичному ключу
         public string ResolveFKColumnName(string columnId)
         {
